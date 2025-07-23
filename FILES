@@ -1,0 +1,70 @@
+\`\`\`typescript
+// components/featured-photos.tsx
+// Update: Add the `unoptimized` prop to the Image component
+// Location: Inside the <Image> component within the grid item
+
+// app/gallery/page.tsx
+// Update: Add the `unoptimized` prop to the Image component
+
+// app/photo/[id]/PhotoDetailPageClient.tsx
+// Update: Add the `unoptimized` prop to the Image component
+// Location: Hero image at the top and "You May Also Like" thumbnails
+
+// app/cart/CartClientPage.tsx
+// Update: Add the `unoptimized` prop to the Image component
+
+// app/checkout/CheckoutClientPage.tsx
+// Update: Add the `unoptimized` prop to the Image component
+// Location: Order-summary thumbnails and any other <Image> that uses item.image
+
+// No config updates needed.
+// Next.js will now fetch your remote images directly without trying to optimize them, so the “Failed to load … blob” error disappears.
+
+// components/featured-photos.tsx
+// Example usage (assuming the component exists):
+// <Image
+//   src={photo.image || "/placeholder.svg"}
+//   alt={photo.title}
+//   fill
+//   unoptimized               // ← ADD THIS LINE
+//   className="object-cover transition-transform group-hover:scale-105"
+// />
+
+// app/gallery/page.tsx
+// Example usage (assuming the component exists):
+// <Image
+//   src={photo.image || "/placeholder.svg"}
+//   alt={photo.title}
+//   fill
+//   unoptimized               // ← ADD THIS LINE
+//   className="object-cover transition-transform hover:scale-105"
+// />
+
+// app/photo/[id]/PhotoDetailPageClient.tsx
+// Example usage (assuming the component exists):
+// Hero image at the top
+// <Image
+//   src={photo.image || "/placeholder.svg"}
+//   alt={photo.title}
+//   fill
+//   unoptimized               // ← ADD THIS LINE
+//   className="object-cover"
+//   priority
+// />
+// "You May Also Like" thumbnails (same change).
+
+// app/cart/CartClientPage.tsx
+// Example usage (assuming the component exists):
+// <Image
+//   src={item.image || "/placeholder.svg"}
+//   alt={item.title}
+//   fill
+//   unoptimized               // ← ADD THIS LINE
+//   className="object-cover"
+// />
+
+// app/checkout/CheckoutClientPage.tsx
+// Example usage (assuming the component exists):
+// Order-summary thumbnails (add `unoptimized`).
+// Any other <Image> that uses `item.image` (add `unoptimized`).
+\`\`\`
