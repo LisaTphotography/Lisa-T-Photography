@@ -88,3 +88,45 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Adding watermark styles for photo protection */
+@layer components {
+  .photo-watermark {
+    position: relative;
+  }
+
+  .photo-watermark::after {
+    content: "© Lisa T Photography";
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+
+  .photo-watermark-center {
+    position: relative;
+  }
+
+  .photo-watermark-center::after {
+    content: "© Lisa T Photography";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+  }
+}

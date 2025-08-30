@@ -100,7 +100,7 @@ export default function PhotoDetailPageClient() {
           {/* Main Image with Zoom Functionality */}
           <Dialog open={isZoomOpen} onOpenChange={setIsZoomOpen}>
             <DialogTrigger asChild>
-              <div className="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-lg cursor-zoom-in group">
+              <div className="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-lg cursor-zoom-in group photo-watermark-center">
                 <Image
                   src={getDirectImageUrl(photo.image) || "/placeholder.svg"}
                   alt={photo.title}
@@ -131,7 +131,7 @@ export default function PhotoDetailPageClient() {
                 >
                   <X className="h-6 w-6" />
                 </Button>
-                <div className="relative w-full h-full flex items-center justify-center p-4">
+                <div className="relative w-full h-full flex items-center justify-center p-4 photo-watermark-center">
                   <Image
                     src={getDirectImageUrl(photo.image) || "/placeholder.svg"}
                     alt={photo.title}
@@ -338,7 +338,7 @@ export default function PhotoDetailPageClient() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPhotos.map((relatedPhoto) => (
                 <Card key={relatedPhoto.id} className="overflow-hidden">
-                  <Link href={`/photo/${relatedPhoto.id}`} className="block relative aspect-square">
+                  <Link href={`/photo/${relatedPhoto.id}`} className="block relative aspect-square photo-watermark">
                     <Image
                       src={getDirectImageUrl(relatedPhoto.image) || "/placeholder.svg"}
                       alt={relatedPhoto.title}

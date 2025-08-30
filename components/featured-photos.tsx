@@ -21,7 +21,7 @@ export default function FeaturedPhotos() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {featuredPhotos.map((photo) => (
         <div key={photo.id} className="group relative flex flex-col">
-          <div className="relative aspect-square overflow-hidden rounded-md">
+          <div className="relative aspect-square overflow-hidden rounded-md photo-watermark">
             <Link href={`/photo/${photo.id}`}>
               <Image
                 src={getDirectImageUrl(photo.image) || "/placeholder.svg"}

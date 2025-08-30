@@ -24,7 +24,7 @@ export default function GalleryPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 bg-transparent">
             <Filter className="h-4 w-4" />
             Filters
           </Button>
@@ -46,7 +46,7 @@ export default function GalleryPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {photos.map((photo) => (
           <Card key={photo.id} className="overflow-hidden">
-            <Link href={`/photo/${photo.id}`} className="block relative aspect-square">
+            <Link href={`/photo/${photo.id}`} className="block relative aspect-square photo-watermark">
               <Image
                 src={photo.image || "/placeholder.svg"}
                 alt={photo.title}
