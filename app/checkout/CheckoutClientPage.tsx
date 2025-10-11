@@ -14,6 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { getDirectImageUrl } from "@/lib/image-utils"
 import { calculateShippingByPostalCode, isValidCanadianPostalCode } from "@/lib/shipping-calculator"
+import { sendOrderEmails } from "./send-order-email"
+import { useToast } from "@/hooks/use-toast"
 
 interface CartItem {
   id: string
@@ -40,6 +42,7 @@ interface ShippingAddress {
 }
 
 export default function CheckoutClientPage() {
+  const { toast } = useToast()
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [shippingMethod, setShippingMethod] = useState<"pickup" | "delivery">("delivery")
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
@@ -67,27 +70,22 @@ export default function CheckoutClientPage() {
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
-  // ────────────────────────────────────────────────────────────
-  // Calculate shipping info whenever method / postal-code change
-  // ────────────────────────────────────────────────────────────
   useEffect(() => {
     if (shippingMethod === "pickup") {
       setShippingInfo({ zone: null, price: 0, freeShippingEligible: true })
       return
     }
 
-    // Need a valid CDN postal code (A1A1A1 or A1A 1A1)
     if (isValidCanadianPostalCode(shippingAddress.postalCode)) {
       const result = calculateShippingByPostalCode(shippingAddress.postalCode, subtotal)
       setShippingInfo(result)
     } else {
-      setShippingInfo(null) // not yet calculated / invalid
+      setShippingInfo(null)
     }
   }, [shippingMethod, shippingAddress.postalCode, subtotal])
 
-  const shipping = shippingMethod === "pickup" ? 0 : shippingInfo ? shippingInfo.price : null // “To be calculated”
-  const tax = subtotal * 0.05 // 5% GST
-  // Always show "To be calculated" for delivery until postal code is entered
+  const shipping = shippingMethod === "pickup" ? 0 : shippingInfo ? shippingInfo.price : null
+  const tax = subtotal * 0.05
   const total = shippingMethod === "pickup" || shipping !== null ? subtotal + (shipping || 0) + tax : null
 
   const getSizeDisplay = (size: string) => {
@@ -157,86 +155,72 @@ export default function CheckoutClientPage() {
   const handleSubmit = async () => {
     setIsProcessing(true)
 
-    // Create order summary
-    const orderDetails = {
-      items: cartItems,
-      shippingMethod,
-      shipping: shippingMethod === "pickup" ? null : shippingAddress,
-      subtotal,
-      shipping: shipping || 0,
-      tax,
-      total: total || subtotal + tax,
-      orderNumber: `LT-${Date.now()}`,
-      shippingZone: shippingInfo?.zone || null,
+    try {
+      const orderNumber = `LT-${Date.now()}`
+
+      // Prepare email data
+      const emailData = {
+        orderNumber,
+        customerName: `${shippingAddress.firstName} ${shippingAddress.lastName}`,
+        customerEmail: shippingAddress.email,
+        customerPhone: shippingAddress.phone,
+        shippingMethod,
+        shippingAddress:
+          shippingMethod === "delivery"
+            ? {
+                address: shippingAddress.address,
+                city: shippingAddress.city,
+                province: shippingAddress.province,
+                postalCode: shippingAddress.postalCode,
+                country: shippingAddress.country,
+              }
+            : undefined,
+        items: cartItems.map((item) => ({
+          title: item.title,
+          size: getSizeDisplay(item.size),
+          frame: getFrameDisplay(item.frame),
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        subtotal,
+        shipping: shipping || 0,
+        tax,
+        total: total || subtotal + tax,
+        shippingZone: shippingInfo?.zone || null,
+      }
+
+      // Send emails
+      const result = await sendOrderEmails(emailData)
+
+      if (!result.success) {
+        toast({
+          title: "Email Error",
+          description: "Order placed but confirmation emails failed to send. We'll contact you shortly.",
+          variant: "destructive",
+        })
+      }
+
+      // Save order details
+      const orderDetails = {
+        ...emailData,
+        items: cartItems,
+      }
+      localStorage.setItem("lastOrder", JSON.stringify(orderDetails))
+
+      // Clear cart
+      localStorage.removeItem("cart")
+
+      // Redirect to success page
+      window.location.href = "/checkout/success"
+    } catch (error) {
+      console.error("Error processing order:", error)
+      toast({
+        title: "Error",
+        description: "Failed to process order. Please try again or contact us directly.",
+        variant: "destructive",
+      })
+      setIsProcessing(false)
     }
-
-    // Create email body for order
-    const emailBody = `
-NEW ORDER - ${orderDetails.orderNumber}
-
-CUSTOMER INFORMATION:
-Name: ${shippingAddress.firstName} ${shippingAddress.lastName}
-Email: ${shippingAddress.email}
-Phone: ${shippingAddress.phone}
-
-${
-  shippingMethod === "pickup"
-    ? `
-PICKUP INFORMATION:
-Customer will pick up order in Strathmore, AB
-Contact customer at: ${shippingAddress.email} or ${shippingAddress.phone}
-`
-    : `
-DELIVERY ADDRESS:
-${shippingAddress.address}
-${shippingAddress.city}, ${shippingAddress.province} ${shippingAddress.postalCode}
-${shippingAddress.country}
-
-SHIPPING ZONE: ${shippingInfo?.zone.name || "Standard"} (${shippingInfo?.zone.description || "Standard shipping"})
-ESTIMATED DELIVERY: ${shippingInfo?.zone.deliveryDays || "5-10 days"}
-`
-}
-
-ORDER ITEMS:
-${cartItems
-  .map(
-    (item) =>
-      `- ${item.title} (${getSizeDisplay(item.size)}, ${getFrameDisplay(item.frame)}) x${item.quantity} = $${(
-        item.price * item.quantity
-      ).toFixed(2)}`,
-  )
-  .join("\n")}
-
-ORDER SUMMARY:
-Subtotal: $${subtotal.toFixed(2)}
-${shippingMethod === "pickup" ? "Pickup: FREE" : `Delivery: ${(shipping || 0) === 0 ? "FREE" : `$${(shipping || 0).toFixed(2)}`}`}
-GST (5%): $${tax.toFixed(2)}
-TOTAL: $${(total || subtotal + tax).toFixed(2)}
-
-PAYMENT INSTRUCTIONS:
-Please send e-transfer for $${(total || subtotal + tax).toFixed(2)} to:
-dat210@telus.net
-
-Security Question: What is my business name?
-Answer: Lisa T Photography
-
-Order will be processed once payment is received.
-
-Thank you for your order!
-Lisa T Photography
-    `.trim()
-
-    // Save order details
-    localStorage.setItem("lastOrder", JSON.stringify(orderDetails))
-
-    // Simulate processing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Clear cart
-    localStorage.removeItem("cart")
-
-    // Redirect to success page
-    window.location.href = "/checkout/success"
   }
 
   if (cartItems.length === 0) {
@@ -322,7 +306,7 @@ Lisa T Photography
                     <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                       <div className="flex items-center gap-2">
                         <Truck className="h-4 w-4" />
-                        <span className="font-medium">Canada Post Delivery</span>
+                        <span className="font-medium">Courier Delivery</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-1">Cost calculated by postal code and distance</p>
                     </Label>
