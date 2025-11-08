@@ -35,8 +35,8 @@ export default function SimpleContact() {
               <CardDescription>We'll respond within 24 hours</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <a href="mailto:dat210@telus.net" className="text-primary hover:underline">
-                dat210@telus.net
+              <a href="mailto:LisaJTPhotography@gmail.com" className="text-primary hover:underline">
+                LisaJTPhotography@gmail.com
               </a>
             </CardContent>
           </Card>
@@ -60,12 +60,12 @@ export default function SimpleContact() {
           </CardHeader>
           <CardContent>
             <Button asChild size="lg">
-              <a href="mailto:dat210@telus.net?subject=Photography Inquiry&body=Hi Lisa,%0D%0A%0D%0AI'm interested in your photography. Please tell me more about:%0D%0A%0D%0A[Your message here]%0D%0A%0D%0AThank you!">
+              <a href="mailto:LisaJTPhotography@gmail.com?subject=Photography Inquiry&body=Hi Lisa,%0D%0A%0D%0AI'm interested in your photography. Please tell me more about:%0D%0A%0D%0A[Your message here]%0D%0A%0D%0AThank you!">
                 Send Email
               </a>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
-              This will open your default email app with a pre-filled message to dat210@telus.net
+              This will open your default email app with a pre-filled message to LisaJTPhotography@gmail.com
             </p>
           </CardContent>
         </Card>

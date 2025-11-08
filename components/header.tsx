@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,8 +28,9 @@ export default function Header() {
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle menu</span>
           </Button>
-          <Link href="/" className="text-xl font-bold">
-            Lisa T Photography
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/logo.png" alt="Lisa JT Photography Logo" width={40} height={40} className="h-10 w-10" />
+            <span className="text-xl font-bold">Lisa JT Photography</span>
           </Link>
         </div>
 
@@ -63,8 +65,9 @@ export default function Header() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 bg-background md:hidden">
           <div className="container flex h-16 items-center justify-between">
-            <Link href="/" className="text-xl font-bold" onClick={() => setIsMenuOpen(false)}>
-              Lisa T Photography
+            <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+              <Image src="/logo.png" alt="Lisa JT Photography Logo" width={40} height={40} className="h-10 w-10" />
+              <span className="text-xl font-bold">Lisa JT Photography</span>
             </Link>
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
               <X className="h-6 w-6" />

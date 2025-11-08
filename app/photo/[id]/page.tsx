@@ -6,12 +6,12 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const photo = getPhotoById(Number.parseInt(params.id))
   if (!photo) {
     return {
-      title: "Photo Not Found | Lisa T Photography",
+      title: "Photo Not Found | Lisa JT Photography",
       description: "The requested photo could not be found.",
     }
   }
   return {
-    title: `${photo.title} | Lisa T Photography`,
+    title: `${photo.title} | Lisa JT Photography`,
     description: photo.description || `${photo.title} - ${photo.category} photography by Lisa T`,
   }
 }

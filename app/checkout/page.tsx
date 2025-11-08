@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import CheckoutClientPage from "./CheckoutClientPage"
 
 export const metadata: Metadata = {
-  title: "Checkout | Lisa T Photography",
+  title: "Checkout | Lisa JT Photography",
   description: "Complete your order securely",
 }
 

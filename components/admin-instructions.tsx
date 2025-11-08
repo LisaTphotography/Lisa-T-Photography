@@ -1,9 +1,9 @@
-// Instructions for Lisa T to customize her photography website
+// Instructions for Lisa JT to customize her photography website
 
 export default function AdminInstructions() {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-muted rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">📸 How to Customize Your Lisa T Photography Website</h2>
+      <h2 className="text-2xl font-bold mb-4">📸 How to Customize Your Lisa JT Photography Website</h2>
 
       <div className="space-y-6">
         <section>

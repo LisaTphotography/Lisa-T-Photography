@@ -135,7 +135,7 @@ export default function TestimonialSection() {
 
       <div className="text-center">
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Share your experience with Lisa T Photography and help others discover the beauty of these unique prints.
+          Share your experience with Lisa JT Photography and help others discover the beauty of these unique prints.
         </p>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -146,7 +146,8 @@ export default function TestimonialSection() {
             <DialogHeader>
               <DialogTitle>Share Your Experience</DialogTitle>
               <DialogDescription>
-                Tell others about your experience with Lisa T Photography. Your review will be displayed on our website.
+                Tell others about your experience with Lisa JT Photography. Your review will be displayed on our
+                website.
               </DialogDescription>
             </DialogHeader>
 
@@ -214,7 +215,7 @@ export default function TestimonialSection() {
           <Button
             variant="outline"
             size="sm"
-            className="ml-4"
+            className="ml-4 bg-transparent"
             onClick={() => {
               if (confirm("Are you sure you want to delete all reviews? This cannot be undone.")) {
                 setTestimonials([])

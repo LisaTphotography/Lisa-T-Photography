@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "Contact | Lisa T Photography",
+  title: "Contact | Lisa JT Photography",
   description: "Get in touch with us for inquiries, custom orders, or any questions",
 }
 

@@ -8,8 +8,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 export const metadata: Metadata = {
-  title: "About | Lisa T Photography",
-  description: "Learn about the photographer behind Lisa T Photography",
+  title: "About | Lisa JT Photography",
+  description: "Learn about the photographer behind Lisa JT Photography",
 }
 
 export default function AboutPage() {

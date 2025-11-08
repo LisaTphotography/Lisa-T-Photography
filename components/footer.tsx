@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Lisa T Photography</h3>
+            <h3 className="text-lg font-bold mb-4">Lisa JT Photography</h3>
             <p className="text-muted-foreground mb-4">
               Capturing life's precious moments with artistic vision and professional quality.
             </p>
@@ -61,7 +61,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4">Contact</h3>
             <address className="not-italic text-muted-foreground">
               <p>Strathmore, Alberta</p>
-              <p className="mt-2">Email: dat210@telus.net</p>
+              <p className="mt-2">Email: LisaJTPhotography@gmail.com</p>
               <p>Phone: (403) 934-7262</p>
             </address>
             <div className="mt-4">
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-          <p>&copy; {currentYear} Lisa T Photography. All rights reserved.</p>
+          <p>&copy; {currentYear} Lisa JT Photography. All rights reserved.</p>
         </div>
       </div>
     </footer>

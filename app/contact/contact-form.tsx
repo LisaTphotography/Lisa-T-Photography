@@ -18,7 +18,7 @@ export default function ContactForm() {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold mb-2">Contact Lisa T Photography</h2>
+        <h2 className="text-2xl font-bold mb-2">Contact Lisa JT Photography</h2>
         <p className="text-muted-foreground">Ready to discuss your photography needs? Here's how to reach me:</p>
       </div>
 
@@ -32,12 +32,12 @@ export default function ContactForm() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center">
-              <p className="text-lg font-medium">dat210@telus.net</p>
+              <p className="text-lg font-medium">LisaJTPhotography@gmail.com</p>
             </div>
             <Button
               variant="outline"
               size="lg"
-              onClick={() => copyToClipboard("dat210@telus.net", "email")}
+              onClick={() => copyToClipboard("LisaJTPhotography@gmail.com", "email")}
               className="w-full"
             >
               {copied === "email" ? (
@@ -108,7 +108,7 @@ export default function ContactForm() {
         <h3 className="font-semibold mb-4 text-center text-blue-900">Contact Information</h3>
         <div className="space-y-2 text-blue-800">
           <p>
-            <strong>Email:</strong> dat210@telus.net
+            <strong>Email:</strong> LisaJTPhotography@gmail.com
           </p>
           <p>
             <strong>Phone:</strong> (403) 934-7262

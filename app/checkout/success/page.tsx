@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "Order Confirmed | Lisa T Photography",
+  title: "Order Confirmed | Lisa JT Photography",
   description: "Your order has been successfully placed",
 }
 
@@ -25,7 +25,7 @@ export default function CheckoutSuccessPage() {
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>What happens next?</CardTitle>
-            <CardDescription>Here's what you can expect from Lisa T Photography</CardDescription>
+            <CardDescription>Here's what you can expect from Lisa JT Photography</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 text-left">
             <div className="flex items-start gap-3">
@@ -68,7 +68,7 @@ export default function CheckoutSuccessPage() {
           <div className="text-sm text-muted-foreground">
             <p>Questions about your order?</p>
             <Link href="/contact" className="text-primary hover:underline">
-              Contact Lisa T Photography
+              Contact Lisa JT Photography
             </Link>
           </div>
         </div>

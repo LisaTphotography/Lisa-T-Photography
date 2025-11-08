@@ -53,7 +53,7 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-black/20 z-5"></div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg">Lisa T Photography</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg">Lisa JT Photography</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto drop-shadow-lg">
             Capturing life's precious moments with artistic vision
           </p>

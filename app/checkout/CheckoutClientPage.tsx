@@ -155,8 +155,14 @@ export default function CheckoutClientPage() {
   const handleSubmit = async () => {
     setIsProcessing(true)
 
+    // Add this console log
+    console.log("Starting order submission...")
+
     try {
       const orderNumber = `LT-${Date.now()}`
+
+      console.log("Order number:", orderNumber)
+      console.log("Customer email:", shippingAddress.email)
 
       // Prepare email data
       const emailData = {
@@ -213,10 +219,11 @@ export default function CheckoutClientPage() {
       // Redirect to success page
       window.location.href = "/checkout/success"
     } catch (error) {
-      console.error("Error processing order:", error)
+      console.error("Detailed error:", error)
       toast({
         title: "Error",
-        description: "Failed to process order. Please try again or contact us directly.",
+        description:
+          error instanceof Error ? error.message : "Failed to process order. Please try again or contact us directly.",
         variant: "destructive",
       })
       setIsProcessing(false)

@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Lisa T Photography | Professional Photography",
+  title: "Lisa JT Photography | Professional Photography",
   description: "Beautiful photography by Lisa T - capturing life's precious moments",
     generator: 'v0.app'
 }

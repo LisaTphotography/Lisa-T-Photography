@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { photos } from "@/components/photo-data"
 
 export const metadata: Metadata = {
-  title: "Gallery | Lisa T Photography",
+  title: "Gallery | Lisa JT Photography",
   description: "Browse Lisa T's collection of beautiful photography",
 }
 
@@ -24,7 +24,7 @@ export default function GalleryPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 bg-transparent">
             <Filter className="h-4 w-4" />
             Filters
           </Button>
