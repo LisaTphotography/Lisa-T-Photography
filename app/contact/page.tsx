@@ -38,8 +38,8 @@ export default function ContactPage() {
               <CardTitle>Email</CardTitle>
               <CardDescription>We'll respond within 24 hours</CardDescription>
             </CardHeader>
-            <CardContent className="text-center">
-              <p>dat210@telus.net</p>
+            <CardContent className="text-center px-4">
+              <p className="text-sm sm:text-base break-words">LisaJTPhotography@gmail.com</p>
             </CardContent>
           </Card>
 
@@ -57,8 +57,8 @@ export default function ContactPage() {
 
         <Card className="mb-12">
           <CardHeader>
-            <CardTitle>Send a Message</CardTitle>
-            <CardDescription>Fill out the form below and we'll get back to you as soon as possible.</CardDescription>
+            <CardTitle>Get In Touch</CardTitle>
+            <CardDescription>Reach out by phone or email - I'll get back to you as soon as possible.</CardDescription>
           </CardHeader>
           <CardContent>
             <ContactForm />

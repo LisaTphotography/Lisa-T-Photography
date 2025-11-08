@@ -272,7 +272,7 @@ export default function CheckoutClientPage() {
                     <li>Complete your order below</li>
                     <li>You'll receive payment instructions via email</li>
                     <li>
-                      Send e-transfer to: <strong>dat210@telus.net</strong>
+                      Send e-transfer to: <strong>LisaJTPhotography@gmail.com</strong>
                     </li>
                     <li>Your order will be processed once payment is received</li>
                   </ol>
@@ -586,7 +586,7 @@ export default function CheckoutClientPage() {
                 <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
                   <p className="text-sm text-green-800 font-medium">💰 E-Transfer Payment</p>
                   <p className="text-xs text-green-600 mt-1">
-                    Send ${total.toFixed(2)} to dat210@telus.net after placing your order
+                    Send ${total.toFixed(2)} to LisaJTPhotography@gmail.com after placing your order
                   </p>
                 </div>
               )}

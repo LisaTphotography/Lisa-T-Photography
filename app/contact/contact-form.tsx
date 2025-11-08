@@ -28,11 +28,11 @@ export default function ContactForm() {
           <CardHeader className="text-center">
             <Mail className="w-12 h-12 mx-auto mb-2 text-primary" />
             <CardTitle>Email</CardTitle>
-            <CardDescription>Best way to reach me</CardDescription>
+            <CardDescription>We'll respond within 24 hours</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-center">
-              <p className="text-lg font-medium">LisaJTPhotography@gmail.com</p>
+            <div className="text-center px-2">
+              <p className="text-base sm:text-lg font-medium break-all">LisaJTPhotography@gmail.com</p>
             </div>
             <Button
               variant="outline"
@@ -103,11 +103,10 @@ export default function ContactForm() {
         </CardContent>
       </Card>
 
-      {/* Simple Contact Info */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
         <h3 className="font-semibold mb-4 text-center text-blue-900">Contact Information</h3>
         <div className="space-y-2 text-blue-800">
-          <p>
+          <p className="break-all">
             <strong>Email:</strong> LisaJTPhotography@gmail.com
           </p>
           <p>
