@@ -10,6 +10,8 @@ interface ContactFormData {
 }
 
 export async function sendContactEmail(formData: ContactFormData) {
+  console.log("[v0] Contact form submission received")
+
   // Validate form data
   if (!formData.name || !formData.email || !formData.subject || !formData.message) {
     throw new Error("All fields are required")
@@ -20,8 +22,13 @@ export async function sendContactEmail(formData: ContactFormData) {
   }
 
   if (!process.env.RESEND_API_KEY) {
+    console.error("[v0] RESEND_API_KEY not found")
     throw new Error("Email service not configured")
   }
+
+  console.log("[v0] Attempting to send contact email...")
+  console.log("[v0] From: contact@lisajtphotography.com")
+  console.log("[v0] To: LisaJTPhotography@gmail.com")
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
@@ -43,13 +50,17 @@ export async function sendContactEmail(formData: ContactFormData) {
       `,
     })
 
+    console.log("[v0] Resend result:", result)
+
     if (result.error) {
+      console.error("[v0] Resend error:", result.error)
       throw new Error(result.error.message)
     }
 
+    console.log("[v0] Email sent successfully!")
     return { success: true }
   } catch (error) {
-    console.error("Failed to send email:", error)
+    console.error("[v0] Failed to send email:", error)
     throw new Error(`Failed to send message: ${error instanceof Error ? error.message : "Unknown error"}`)
   }
 }
