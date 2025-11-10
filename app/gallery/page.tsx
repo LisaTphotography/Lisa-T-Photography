@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { Filter } from "lucide-react"
 
@@ -8,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { photos } from "@/components/photo-data"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 export const metadata: Metadata = {
   title: "Gallery | Lisa JT Photography",
@@ -47,7 +47,7 @@ export default function GalleryPage() {
         {photos.map((photo) => (
           <Card key={photo.id} className="overflow-hidden">
             <Link href={`/photo/${photo.id}`} className="block relative aspect-square">
-              <Image
+              <WatermarkedImage
                 src={photo.image || "/placeholder.svg"}
                 alt={photo.title}
                 fill

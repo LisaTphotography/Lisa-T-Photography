@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Heart, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { getFeaturedPhotos } from "./photo-data"
 import { getDirectImageUrl } from "@/lib/image-utils"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 export default function FeaturedPhotos() {
   const [favorites, setFavorites] = useState<number[]>([])
@@ -23,7 +23,7 @@ export default function FeaturedPhotos() {
         <div key={photo.id} className="group relative flex flex-col">
           <div className="relative aspect-square overflow-hidden rounded-md">
             <Link href={`/photo/${photo.id}`}>
-              <Image
+              <WatermarkedImage
                 src={getDirectImageUrl(photo.image) || "/placeholder.svg"}
                 alt={photo.title}
                 fill

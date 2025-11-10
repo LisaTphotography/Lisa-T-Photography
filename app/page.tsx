@@ -7,6 +7,7 @@ import FeaturedPhotos from "@/components/featured-photos"
 import TestimonialSection from "@/components/testimonial-section"
 import { photos } from "@/components/photo-data"
 import { getDirectImageUrl } from "@/lib/image-utils"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 export default function Home() {
   // Select one photo from each category for the category tiles
@@ -97,7 +98,7 @@ export default function Home() {
                 key={category}
                 className="group relative h-64 overflow-hidden rounded-lg transition-all hover:shadow-lg"
               >
-                <Image
+                <WatermarkedImage
                   src={getDirectImageUrl(photo?.image) || "/placeholder.svg?height=600&width=800"}
                   alt={`${category} photography - ${photo?.title || "Sample photo"}`}
                   fill

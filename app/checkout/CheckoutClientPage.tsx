@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Mail, Package, Truck, MapPin, Calculator } from "lucide-react"
 
@@ -16,6 +15,7 @@ import { getDirectImageUrl } from "@/lib/image-utils"
 import { calculateShippingByPostalCode, isValidCanadianPostalCode } from "@/lib/shipping-calculator"
 import { sendOrderEmails } from "./send-order-email"
 import { useToast } from "@/hooks/use-toast"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 interface CartItem {
   id: string
@@ -526,7 +526,7 @@ export default function CheckoutClientPage() {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-3">
                     <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
-                      <Image
+                      <WatermarkedImage
                         src={getDirectImageUrl(item.image) || "/placeholder.svg"}
                         alt={item.title}
                         fill

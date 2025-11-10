@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { CardContent } from "@/components/ui/card"
 import { Card } from "@/components/ui/card"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Heart, Share2, ShoppingCart, ZoomIn, X } from "lucide-react"
 
@@ -15,6 +14,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { getPhotoById, photos, handlePurchase } from "@/components/photo-data"
 import { getDirectImageUrl } from "@/lib/image-utils"
 import { useParams, useRouter } from "next/navigation"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 // Frame pricing by size
 const framePricing = {
@@ -101,7 +101,7 @@ export default function PhotoDetailPageClient() {
           <Dialog open={isZoomOpen} onOpenChange={setIsZoomOpen}>
             <DialogTrigger asChild>
               <div className="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-lg cursor-zoom-in group">
-                <Image
+                <WatermarkedImage
                   src={getDirectImageUrl(photo.image) || "/placeholder.svg"}
                   alt={photo.title}
                   fill
@@ -132,7 +132,7 @@ export default function PhotoDetailPageClient() {
                   <X className="h-6 w-6" />
                 </Button>
                 <div className="relative w-full h-full flex items-center justify-center p-4">
-                  <Image
+                  <WatermarkedImage
                     src={getDirectImageUrl(photo.image) || "/placeholder.svg"}
                     alt={photo.title}
                     fill
@@ -339,7 +339,7 @@ export default function PhotoDetailPageClient() {
               {relatedPhotos.map((relatedPhoto) => (
                 <Card key={relatedPhoto.id} className="overflow-hidden">
                   <Link href={`/photo/${relatedPhoto.id}`} className="block relative aspect-square">
-                    <Image
+                    <WatermarkedImage
                       src={getDirectImageUrl(relatedPhoto.image) || "/placeholder.svg"}
                       alt={relatedPhoto.title}
                       fill

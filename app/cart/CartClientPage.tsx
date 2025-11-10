@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
+import { WatermarkedImage } from "@/components/watermarked-image"
 
 interface CartItem {
   id: string
@@ -77,7 +77,7 @@ export default function CartClientPage() {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4 sm:gap-6">
                   <div className="relative h-24 w-24 sm:h-32 sm:w-32 flex-shrink-0 rounded-md overflow-hidden">
-                    <Image
+                    <WatermarkedImage
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
