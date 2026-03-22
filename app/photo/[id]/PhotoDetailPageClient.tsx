@@ -8,7 +8,6 @@ import { ArrowLeft, Heart, Share2, ShoppingCart, ZoomIn, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { getPhotoById, photos, handlePurchase } from "@/components/photo-data"
@@ -16,35 +15,6 @@ import { getDirectImageUrl } from "@/lib/image-utils"
 import { useParams, useRouter } from "next/navigation"
 import { WatermarkedImage } from "@/components/watermarked-image"
 
-// Frame pricing by size
-const framePricing = {
-  black: {
-    small: 15, // 5x7
-    medium: 25, // 8x11
-    large: 27, // 11x14
-    extraLarge: 30, // 16x20
-  },
-  white: {
-    small: 15,
-    medium: 25,
-    large: 27,
-    extraLarge: 30,
-  },
-  natural: {
-    small: 18,
-    medium: 28,
-    large: 30,
-    extraLarge: 35,
-  },
-  none: {
-    small: 0,
-    medium: 0,
-    large: 0,
-    extraLarge: 0,
-  },
-}
-
-type FrameType = "none" | "black" | "white" | "natural"
 type SizeType = "small" | "medium" | "large" | "extraLarge"
 
 export default function PhotoDetailPageClient() {
@@ -52,7 +22,6 @@ export default function PhotoDetailPageClient() {
   const router = useRouter()
   const photo = getPhotoById(Number.parseInt(params.id as string))
   const [selectedSize, setSelectedSize] = useState<SizeType>("medium")
-  const [selectedFrame, setSelectedFrame] = useState<FrameType>("none")
   const [isZoomOpen, setIsZoomOpen] = useState(false)
 
   if (!photo) {
@@ -70,21 +39,12 @@ export default function PhotoDetailPageClient() {
   // Get related photos from the same category
   const relatedPhotos = photos.filter((p) => p.category === photo.category && p.id !== photo.id).slice(0, 3)
 
-  // Calculate total price based on selected size and frame
   const calculateTotalPrice = () => {
     if (!photo.dimensions) return 0
-    const printPrice = photo.dimensions[selectedSize].price
-    const framePrice = framePricing[selectedFrame][selectedSize]
-    return printPrice + framePrice
+    return photo.dimensions[selectedSize].price
   }
 
   const totalPrice = calculateTotalPrice()
-
-  // Get frame description
-  const getFrameDescription = () => {
-    if (selectedFrame === "none") return ""
-    return ` with ${selectedFrame} frame`
-  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -180,7 +140,7 @@ export default function PhotoDetailPageClient() {
             >
               <TabsList className="grid grid-cols-4 w-full">
                 <TabsTrigger value="small">5×7</TabsTrigger>
-                <TabsTrigger value="medium">8×11</TabsTrigger>
+                <TabsTrigger value="medium">8×10</TabsTrigger>
                 <TabsTrigger value="large">11×14</TabsTrigger>
                 <TabsTrigger value="extraLarge">16×20</TabsTrigger>
               </TabsList>
@@ -224,34 +184,16 @@ export default function PhotoDetailPageClient() {
             <p className="text-sm text-muted-foreground mt-2">Free shipping on orders over $50</p>
           </div>
 
-          <div className="mt-6">
-            <h3 className="font-medium mb-2">Select Frame</h3>
-            <Select defaultValue="none" onValueChange={(value) => setSelectedFrame(value as FrameType)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select frame" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">No Frame</SelectItem>
-                <SelectItem value="black">Black Frame (+${framePricing.black[selectedSize]})</SelectItem>
-                <SelectItem value="white">White Frame (+${framePricing.white[selectedSize]})</SelectItem>
-                <SelectItem value="natural">Natural Wood Frame (+${framePricing.natural[selectedSize]})</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="mt-6 p-4 bg-muted/50 rounded-md border">
+            <p className="text-sm text-muted-foreground">
+              Interested in custom framing? Contact us to inquire about framing options for your print.
+            </p>
           </div>
 
           <div className="mt-6 p-4 bg-muted rounded-md">
             <div className="flex justify-between items-center">
               <div>
-                <p className="font-medium">
-                  {photo.dimensions?.[selectedSize].size}
-                  {getFrameDescription()}
-                </p>
-                {selectedFrame !== "none" && (
-                  <div className="text-sm text-muted-foreground mt-1">
-                    <p>Print: ${photo.dimensions?.[selectedSize].price.toFixed(2)}</p>
-                    <p>Frame: ${framePricing[selectedFrame][selectedSize].toFixed(2)}</p>
-                  </div>
-                )}
+                <p className="font-medium">{photo.dimensions?.[selectedSize].size}</p>
               </div>
               <span className="text-2xl font-bold">${totalPrice.toFixed(2)}</span>
             </div>
@@ -262,15 +204,14 @@ export default function PhotoDetailPageClient() {
               size="lg"
               className="flex-1 gap-2"
               onClick={() => {
-                // Create cart item with selected options
                 const cartItem = {
-                  id: `${photo.id}-${selectedSize}-${selectedFrame}`, // Unique ID for cart item
+                  id: `${photo.id}-${selectedSize}`,
                   photoId: photo.id,
                   title: photo.title,
                   image: photo.image,
                   category: photo.category,
                   size: selectedSize,
-                  frame: selectedFrame,
+                  frame: "none",
                   price: totalPrice,
                   quantity: 1,
                 }
@@ -321,7 +262,7 @@ export default function PhotoDetailPageClient() {
             <ul className="text-muted-foreground space-y-2">
               <li>• Premium archival paper</li>
               <li>• Fade-resistant inks</li>
-              <li>• Signed by Lisa T</li>
+              <li>• Signed by Lisa JT</li>
               <li>• Certificate of authenticity included</li>
               <li>• Ships within 3-5 business days</li>
               <li>• Click image above to view full size</li>

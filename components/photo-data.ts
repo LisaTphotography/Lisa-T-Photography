@@ -7,8 +7,7 @@ export interface Photo {
   image: string
   description?: string
   isFeatured?: boolean
-  isBestseller: boolean
-  purchaseCount: number
+  isBestseller?: boolean
   dimensions?: {
     small: { size: string; price: number }
     medium: { size: string; price: number }
@@ -16,6 +15,7 @@ export interface Photo {
     extraLarge: { size: string; price: number }
   }
   tags?: string[]
+  purchaseCount?: number
 }
 
 // Update the categories array to match the user's specified categories
@@ -26,30 +26,11 @@ export const categories = [
   "Nature & Sky",
   "Old Elevators in AB",
   "Old Cars & Trains",
+  "Landscapes",
 ]
 
 // Lisa's Complete Photo Collection - 60 photos organized by category
 export const photos: Photo[] = [
-  // Old Buildings During the Day (1-25)
-  {
-    id: 1,
-    title: "Rustic Red",
-    category: "Old Buildings",
-    price: 10.0,
-    // ⬇️ PASTE YOUR ACTUAL IMAGE URL HERE - make sure it's a direct link ending in .jpg
-    image: "https://i.imgur.com/tQQpdqI.jpg",
-    description: "A classic red barn surrounded by the Alberta prairies.",
-    isFeatured: true,
-    isBestseller: false,
-    purchaseCount: 0,
-    dimensions: {
-      small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
-      large: { size: "11×14 in", price: 25.0 },
-      extraLarge: { size: "16×20 in", price: 45.0 },
-    },
-    tags: ["Old barn", "prairie", "heritage", "alberta"],
-  },
   {
     id: 2,
     title: "Rural Relic",
@@ -62,7 +43,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -80,7 +61,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -97,7 +78,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -114,7 +95,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -131,7 +112,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -148,7 +129,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -165,7 +146,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -182,7 +163,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -199,7 +180,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -216,7 +197,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -233,7 +214,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -250,7 +231,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -267,7 +248,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -284,7 +265,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -301,7 +282,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -318,7 +299,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -335,7 +316,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -352,7 +333,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -369,7 +350,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -386,7 +367,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -403,7 +384,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -420,7 +401,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -437,7 +418,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -454,7 +435,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -474,7 +455,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -492,7 +473,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -509,7 +490,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -526,7 +507,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -543,7 +524,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -562,7 +543,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -580,7 +561,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -598,7 +579,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -615,7 +596,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -632,7 +613,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -649,7 +630,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -666,7 +647,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -683,7 +664,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -700,7 +681,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -720,7 +701,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -737,7 +718,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -754,7 +735,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -771,7 +752,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -788,7 +769,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -805,7 +786,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -822,7 +803,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -839,7 +820,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -859,7 +840,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -876,7 +857,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -893,7 +874,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -910,7 +891,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -927,7 +908,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -947,7 +928,7 @@ export const photos: Photo[] = [
     purchaseCount: 0,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -964,7 +945,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -981,7 +962,7 @@ export const photos: Photo[] = [
     isBestseller: false,
     dimensions: {
       small: { size: "5×7 in", price: 10.0 },
-      medium: { size: "8×11 in", price: 15.0 },
+      medium: { size: "8×10 in", price: 15.0 },
       large: { size: "11×14 in", price: 25.0 },
       extraLarge: { size: "16×20 in", price: 45.0 },
     },
@@ -996,7 +977,7 @@ const BESTSELLER_THRESHOLD = 10
 export const handlePurchase = (photoId: number) => {
   const photo = photos.find((p) => p.id === photoId)
   if (photo) {
-    photo.purchaseCount += 1
+    photo.purchaseCount = (photo.purchaseCount || 0) + 1
     if (photo.purchaseCount >= BESTSELLER_THRESHOLD) {
       photo.isBestseller = true
     }
